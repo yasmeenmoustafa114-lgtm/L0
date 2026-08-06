@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاضرة مركزة المركزيات | ملخص اكاديمي شامل</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --primary-dark: #3730a3;
+            --accent-cyan: #06b6d4;
+            --accent-purple: #9333ea;
+            
+            --border-color: #e2e8f0;
+            --border-hover: #cbd5e1;
+            
+            /* Status Box Colors */
+            --info-bg: #eff6ff; --info-border: #3b82f6; --info-text: #1e40af;
+            --warning-bg: #fefce8; --warning-border: #eab308; --warning-text: #854d0e;
+            --danger-bg: #fef2f2; --danger-border: #ef4444; --danger-text: #991b1b;
+            --success-bg: #ecfdf5; --success-border: #10b981; --success-text: #065f46;
+            --purple-bg: #faf5ff; --purple-border: #a855f7; --purple-text: #6b21a8;
+
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            
+            --font-main: 'Cairo', sans-serif;
+            --font-sub: 'Tajawal', sans-serif;
+            --font-scale: 1;
+        }
+
+        .dark-mode {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: rgba(30, 41, 59, 0.85);
+            --bg-glass: rgba(15, 23, 42, 0.75);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            
+            --border-color: #334155;
+            --border-hover: #475569;
+            
+            --info-bg: rgba(30, 58, 138, 0.3); --info-border: #60a5fa; --info-text: #93c5fd;
+            --warning-bg: rgba(113, 63, 18, 0.3); --warning-border: #facc15; --warning-text: #fef08a;
+            --danger-bg: rgba(127, 29, 29, 0.3); --danger-border: #f87171; --danger-text: #fca5a5;
+            --success-bg: rgba(6, 78, 59, 0.3); --success-border: #34d399; --success-text: #a7f3d0;
+            --purple-bg: rgba(88, 28, 135, 0.3); --purple-border: #c084fc; --purple-text: #e9d5ff;
+
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: calc(16px * var(--font-scale));
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Reading Progress Bar */
+        #progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        #progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent-cyan), var(--accent-purple));
+            width: 0%;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Floating Controls Bar */
+        .controls-bar {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+            display: flex;
+            gap: 8px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            padding: 8px;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-control {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-control:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Header Section */
+        header {
+            position: relative;
+            padding: 80px 20px 60px;
+            background: linear-gradient(135deg, #3730a3 0%, #4f46e5 50%, #06b6d4 100%);
+            color: white;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: 40px;
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge-header {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+            line-height: 1.3;
+        }
+
+        header p.subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-family: var(--font-sub);
+        }
+
+        .header-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            min-width: 140px;
+        }
+
+        .stat-card .num {
+            font-size: 1.6rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .stat-card .label {
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+
+        /* Layout Architecture */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Sidebar & TOC */
+        aside.sidebar {
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        @media (max-width: 1024px) {
+            aside.sidebar {
+                position: static;
+                height: auto;
+                margin-bottom: 20px;
+            }
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+
+        .search-box::after {
+            content: '🔍';
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.9rem;
+            opacity: 0.5;
+        }
+
+        .toc-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-item {
+            margin-bottom: 6px;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 8px 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .toc-link:hover, .toc-link.active {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            font-weight: 700;
+            padding-right: 18px;
+        }
+
+        /* Main Content Styling */
+        main.content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dark-mode .card-title {
+            color: var(--accent-cyan);
+        }
+
+        .btn-copy {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-family: var(--font-main);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-copy:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Callout Boxes */
+        .box {
+            padding: 20px;
+            border-radius: 14px;
+            margin: 20px 0;
+            border-right: 5px solid;
+            position: relative;
+        }
+
+        .box-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .box-info { background: var(--info-bg); border-color: var(--info-border); color: var(--info-text); }
+        .box-warning { background: var(--warning-bg); border-color: var(--warning-border); color: var(--warning-text); }
+        .box-danger { background: var(--danger-bg); border-color: var(--danger-border); color: var(--danger-text); }
+        .box-success { background: var(--success-bg); border-color: var(--success-border); color: var(--success-text); }
+        .box-purple { background: var(--purple-bg); border-color: var(--purple-border); color: var(--purple-text); }
+
+        /* Diagrams & Charts (SVG/CSS Pure) */
+        .diagram-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .diagram-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Mindmap / Tree Diagram */
+        .tree-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .tree-root {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: var(--shadow-md);
+        }
+
+        .tree-branches {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            width: 100%;
+            position: relative;
+        }
+
+        .tree-node {
+            background: var(--bg-card);
+            border: 2px solid var(--primary-light);
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            flex: 1;
+            min-width: 180px;
+            max-width: 240px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Custom Tables */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(79, 70, 229, 0.04);
+        }
+
+        /* Timeline / Stepper */
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+            margin: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary-light);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -26px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 3px solid var(--primary);
+        }
+
+        .timeline-content {
+            background: var(--bg-secondary);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 15px 0;
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .accordion-header {
+            padding: 15px 20px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.01);
+            user-select: none;
+        }
+
+        .accordion-header:hover {
+            background: rgba(79, 70, 229, 0.05);
+        }
+
+        .accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            padding: 20px;
+            max-height: 1000px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Custom Lists & Badges */
+        .styled-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .styled-list li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 10px;
+        }
+
+        .styled-list li::before {
+            content: "✦";
+            position: absolute;
+            right: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: 8px;
+        }
+
+        .badge-primary { background: rgba(79, 70, 229, 0.15); color: var(--primary); }
+        .badge-cyan { background: rgba(6, 182, 212, 0.15); color: var(--accent-cyan); }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding: 40px 20px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Print Optimization */
+        @media print {
+            .controls-bar, aside.sidebar, .btn-copy, #progress-container {
+                display: none !important;
+            }
+            .container {
+                grid-template-columns: 1fr !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .card {
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+                page-break-inside: avoid;
+                margin-bottom: 20px !important;
+            }
+            header {
+                background: none !important;
+                color: black !important;
+                clip-path: none !important;
+                padding: 20px 0 !important;
+            }
+            header h1 { color: black !important; }
+        }
+
+        /* Utility classes */
+        .hidden { display: none !important; }
+        .highlight { background-color: rgba(250, 204, 21, 0.4); padding: 0 4px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <!-- Floating Top Controls Bar -->
+    <div class="controls-bar" title="أدوات التحكم بالصفحة">
+        <button class="btn-control" id="btn-theme" title="تبديل الوضع (ليلي/نهاري)">🌙</button>
+        <button class="btn-control" id="btn-font-plus" title="تكبير الخط">A+</button>
+        <button class="btn-control" id="btn-font-minus" title="تصغير الخط">A-</button>
+        <button class="btn-control" id="btn-print" title="طباعة المستند">🖨️</button>
+        <button class="btn-control" id="btn-scroll-top" title="العودة للأعلى">↑</button>
+    </div>
+
+    <!-- Page Header -->
+    <header>
+        <div class="header-content">
+            <span class="badge-header">ملخص أكاديمي شامل ومكثف</span>
+            <h1>محاضرة : مركزة المركزيات</h1>
+            <p class="subtitle">دراسة منهجية تأصيلية حول ضبط الأولويات الشرعية، ومعالجة اختلال المفاهيم وتداعياتها الإصلاحية</p>
+            
+            <div class="header-stats">
+                <div class="stat-card">
+                    <span class="num">7</span>
+                    <span class="label">محاور رئيسية</span>
+                </div>
+                <div class="stat-card">
+                    <span class="num">100%</span>
+                    <span class="label">شامل بدون اختصار</span>
+                </div>
+                <div class="stat-card">
+                    <span class="num">7+</span>
+                    <span class="label">مركزيات للإحياء</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container Layout -->
+    <div class="container">
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="بحث فوري في المحاضرة...">
+            </div>
+            
+            <div class="toc-title">
+                <span>📌</span> فهرس المحتويات
+            </div>
+            <ul class="toc-list" id="toc-list">
+                <!-- Auto Generated via JS -->
+            </ul>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content" id="main-content">
+
+            <!-- Intro / Overview Card -->
+            <section class="card" id="overview">
+                <div class="card-header">
+                    <h2 class="card-title"><span>📚</span> نظرة عامة ومحاور المحاضرة</h2>
+                    <button class="btn-copy" onclick="copyCardText(this)">📋 نسخ البطاقة</button>
+                </div>
+                <p style="margin-bottom: 20px;">
+                    تناقش هذه المحاضرة القضية المحورية في ترتيب وتصنيف الأحكام الشرعية وقضايا الواقع وفق رؤية الوحي، معالجةً الأخطاء الناتجة عن تقديم الفرعيات أو حصر الدين في قضايا جزئية.
+                </p>
+                <div class="diagram-container">
+                    <div class="diagram-title">خريطة المحاور الأساسية للمحاضرة</div>
+                    <div class="tree-diagram">
+                        <div class="tree-root">مركزة المركزيات</div>
+                        <div class="tree-branches">
+                            <div class="tree-node">1. المفهوم والتعريف</div>
+                            <div class="tree-node">2. المستند الشرعي</div>
+                            <div class="tree-node">3. أمثلة الخلل</div>
+                            <div class="tree-node">4. إشكالات الخلل</div>
+                            <div class="tree-node">5. معايير المعرفة</div>
+                            <div class="tree-node">6. الآثار الحسنة</div>
+                            <div class="tree-node">7. مركزيات للإحياء</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Axis 1: Definitions -->
+            <section class="card" id="axis-1">
+                <div class="card-header">
+                    <h2 class="card-title"><span>1️⃣</span> تعريف | ما المقصود بمركزة المركزيات؟</h2>
+                    <button class="btn-copy" onclick="copyCardText(this)">📋 نسخ البطاقة</button>
+                </div>
+                
+                <div class="box box-info">
+                    <div class="box-title"><span>🔹</span> معنى (مركزيّة):</div>
+                    <p>أمر ذاتي، وهي إعادة ترتيب الوضع لتأخذ وضعها كما أخذه الشرع. فالمركزيات شيء مرتبط بالشريعة، حيث أن فيها تفاوتًا في أهميتها، وهي الأمور التي تدور حولها الشريعة.</p>
+                </div>
+
+                <div class="box box-purple">
+                    <div class="box-title"><span>📌</span> التعريف العام المزدوج:</div>
+                    <ul class="styled-list">
+                        <li><strong>من الناحية الشرعية:</strong> إعطاء كل أمر شرعيّ قيمته التي جعلها له الوحي، والعمل على ضوء ذلك من جهة الأولوية والاهتمام.</li>
+                        <li><strong>من ناحية الواقع:</strong> إعطاء كل مشكلة في الواقع قدرها من الاهتمام بحسب قيمتها في الشرع وأثرها في الواقع.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Axis 2: Sharia Evidences -->
+            <section class="card" id="axis-2">
+                <div class="card-header">
+                    <h2 class="card-title"><span>2️⃣</span> المستند الشرعي لقضية المركزيات في الشريعة</h2>
+                    <button class="btn-copy" onclick="copyCardText(this)">📋 نسخ البطاقة</button>
+                </div>
+
+                <p><strong>هل يوجد في الشريعة معنى التفاوت في الأمور الشرعية؟</strong></p>
+                <p><strong>الإجابة:</strong> نعم، وجداً.</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="badge badge-primary">شاهد 1</span>
+                            <strong>حديث أبيّ بن كعب رضي الله عنه:</strong>
+                            <p>«أتدري أي آية من كتاب الله معك أعظم...» الحديث. <br>
+                            <em>الدلالة:</em> التعرّف على الله والعلم به قضيّة مركزية.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="badge badge-primary">شاهد 2</span>
+                            <strong>حديث أبي سعيد بن المعلى رضي الله عنه:</strong>
+                            <p>«كنت أصلي في المسجد...» الحديث.<br>
+                            <em>الدلالة:</em> كان النبي ﷺ يثبّت فهمًا خاصًا فيما يتعلق بالمركزيات وتفاضل السور والأعمال.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="badge badge-cyan">شاهد قرآني 1</span>
+                            <p>قوله تعالى: ﴿وَمَنْ أَحْسَنُ قَوْلًا مِّمَّن دَعَا إِلَى اللَّهِ...﴾ [فصلت: 33].</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="badge badge-cyan">شاهد قرآني 2</span>
+                            <p>قوله تعالى: ﴿الَّذِينَ يَجْتَنِبُونَ كَبَائِرَ الْإِثْمِ وَالْفَوَاحِشَ...﴾ [النجم: 32].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box box-success">
+                    <div class="box-title"><span>💡</span> النتيجة والأثر الفقهي:</div>
+                    <p>فالتفاوت في الأوامر والنواهي يترتب عليه أحكام جليلة؛ ومثال ذلك قوله تعالى: ﴿إِنَّ اللَّهَ لَا يَغْفِرُ أَن يُشْرَكَ بِهِ وَيَغْفِرُ مَا دُونَ ذَٰلِكَ لِمَن يَشَاءُ﴾ [النساء: 48].</p>
+                </div>
+            </section>
+
+            <!-- Axis 3: Examples of Defect -->
+            <section class="card" id="axis-3">
+                <div class="card-header">
+                    <h2 class="card-title"><span>3️⃣</span> أمثلة متعددة للخلل في المركزيات وماذا أحدثت</h2>
+                    <button class="btn-copy" onclick="copyCardText(this)">📋 نسخ البطاقة</button>
+                </div>
+
+                <p>الخلل في المركزيات له صور متعددة ومظاهر متنوعة، ومن أبرز أمثلتها:</p>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>الصورة الأولى: جعل الشيء غير المركزي مركزيًا</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="box box-success">
+                                <div class="box-title">مثال علمي:</div>
+                                <p><strong>مركزة التقدم المادي في الإسلام:</strong> حيث أدى هذا الخلل إلى إنكار المعجزات تأثرًا بالمنطق المادي المادي النافذ، بجعل الماديات هي المركز في تقييم الدين.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>الصورة الثانية: أن يكون الأمر مركزيًا بالفعل، لكن المضامين المعبّرة عنه ليست مركزية</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="box box-success">
+                                <div class="box-title">المثال الأول (إثبات وجود الله):</div>
+                                <p>إثبات وجود الله من الناحية الموضوعية بأساليب غير مركزية، بينما الأصل في الشريعة أنه شيء مُسَلّم به وفطري، والتركيز يقع على إفراده بالعبادة والتعريف بأسمائه وصفاته.</p>
+                            </div>
+                            <div class="box box-success">
+                                <div class="box-title">المثال الثاني (التزكية):</div>
+                                <p>الحكم على التزكية واختزالها من خلال الظاهر كـ "اللباس" مثلاً، بينما التزكية أصلها أعمال القلوب وطهارتها وليست محصورة في هذا المظهر الجزئي.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Axis 4: Issues from Imbalance -->
+            <section class="card" id="axis-4">
+                <div class="card-header">
+                    <h2 class="card-title"><span>4️⃣</span> الإشكالات التي تنتج عن الخلل في المركزيات</h2>
+                    <button class="btn-copy" onclick="copyCardText(this)">📋 نسخ البطاقة</button>
+                </div>
+
+                <h3 style="font-size:1.1rem; margin-bottom: 12px; color: var(--primary);">أولاً: صور عدم ضبط المركزيات</h3>
+                <div class="diagram-container">
+                    <div class="diagram-title">المخطط الهيكلي لصور عدم ضبط المركزيات</div>
+                    <div class="tree-diagram">
+                        <div class="tree-branches">
+                            <div class="tree-node" style="border-color: var(--danger-border)">1. مركزة الفرعيات أو القضايا الخاطئة</div>
+                            <div class="tree-node" style="border-color: var(--danger-border)">2. تهميش المركزيات الصحيحة</div>
+                            <div class="tree-node" style="border-color: var(--danger-border)">3. الخلل في ضبط المركزيات الداخلية للأمر المركزي</div>
+                            <div class="tree-node" style="border-color: var(--danger-border)">4. السير بلا مركزيات</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="font-size:1.1rem; margin: 25px 0 12px; color: var(--primary);">ثانياً: ماذا ينتج عن هذا الخلل؟ (الآثار والنواتج):</h3>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>المشكلة / النتيجة</th>
+                                <th>الشرح والتوضيح والتطبيقات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><strong>الغلو</strong></td>
+                                <td>قد يكون بالدين، أو بالحياة العامة نتيجة تضخيم غير المركزي.</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><strong>الوقوع في التفسير الخاطئ للدين</strong></td>
+                                <td>إعادة قراءة نظر الدين بناءً على القضية المركزية التي يؤمن بها الإنسان.<br>
+                                <span class="box-success" style="display:inline-block; padding:4px 8px; margin-top:5px; font-size:0.85rem;">مثال:</span> من يعتقد ولاية أهل البيت، وزعم بعضهم بتخريق القرآن وحذف بعض سوره المتعلقة بالولاية!</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><strong>انقلاب الأولويات</strong></td>
+                                <td>اضطراب الفهم؛ علماً أن "فقه الأولويات من عين الحكمة".</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><strong>الخلل في العبادة والإصلاح</strong></td>
+                                <td>ليس بالضرورة أن يكون محرمًا، لكن أن تتعبد بطريق تتعب فيه ولكنه يكون غير مركزي ولا يورث الأثر المطلوب.</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td><strong>الوهم واللبس</strong></td>
+                                <td>يظن أنه على شيء صحيح! وفي الحديث: «يمرقون من الدين كما يمرق السهم من الرمية».</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td><strong>الاستغراق المؤدي لإدخال تفاصيل غير صحيحة</strong></td>
+                                <td>الاستغراق الشديد في قضية يجعل الإنسان يدخل تفاصيل خاطئة في القضايا لتعزيز مركزيته التوهمية.</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td><strong>الخطأ في تقييم الأشخاص والقضايا وقراءة الواقع</strong></td>
+                                <td><span class="box-success" style="display:inline-block; padding:4px 8px; font-size:0.85rem;">مثال:</span> الحكم بـ "القضية الفلانية خاطئة لأنها خالفت المركزية عند المخطِّئ" (رغم أنها ليست مركزية شرعاً).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Axis 5: How to Identify Centralities -->
+            <section class="card" id="axis-5">
+                <div class="card-header">
+                    <h2 class="card-title"><span>5️⃣</span> كيف نعرف المركزيات؟</h2>
+                    <button class="btn-copy" onclick="copyCardText(this)">📋 نسخ البطاقة</button>
+                </div>
+
+                <div class="box box-purple">
+                    <div class="box-title">أولاً: من ناحية الشرع (المعايير الشرعية)</div>
+                    <ol style="margin-right: 20px; line-height: 2;">
+                        <li><strong>التكرار والدوران:</strong> ما تكرر في الشرع وأعيد معناه والحثّ عليه، يدل على أهمية ومركزية هذا الأمر.</li>
+                        <li><strong>النص على الأولوية:</strong> أن يأتي النص صراحة على أولويته وخيريته في مقابل غيره.</li>
+                        <li><strong>كثرة الآثار الحسنة:</strong> أن تكثر الآثار الحسنة التي علقها الشرع على تلك القضية.</li>
+                    </ol>
+
+                    <p style="margin-top: 15px; font-weight: 700;">ولمعرفة المركزيات الداخلية القضية:</p>
+                    <ol start="4" style="margin-right: 20px; line-height: 2;">
+                        <li>
+                            <strong>تعريف الاسم العام المركزي ببعض أفراده:</strong>
+                            <div class="box box-success" style="margin: 5px 0;">
+                                <strong>مثال:</strong> قول النبي ﷺ: «المسلم من سلم المسلمون من لسانه ويده»، مع أن المسلم هو من يشهد أن لا إله إلا الله وأن محمدًا رسول الله...، فمن يفعل الشهادتين ولم يسلم المسلمون من لسانه ويده = فقد أخل بمركزية داخلية في مسمى الإسلام.
+                            </div>
+                        </li>
+                        <li>
+                            <strong>نفي الاسم العام عمن يخل بهذا العمل:</strong>
+                            <div class="box box-warning" style="margin: 5px 0;">
+                                <strong>مثال:</strong> قوله ﷺ: «لا يؤمن من لا يأمن جاره بوائقه»، لا يعني نفي الإيمان بالكلية، ولكنه يدل على أن هذا العمل أخل بمركزية من مركزيات الإيمان.
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="box box-info" style="margin-top:20px;">
+                    <div class="box-title">ثانياً: من ناحية المشكلات المتعلقة بالواقع الإصلاحي</div>
+                    <ul class="styled-list">
+                        <li><strong>1. مقدار هذه المشكلة في شريعة الإسلام:</strong> حجم وزنها الشرعي.</li>
+                        <li><strong>2. النظر في طبيعة تأثيرها على الإنسان المسلم:</strong> مدى الخلل الواقع في تدينه وأخلاقه.</li>
+                        <li><strong>3. توليد المشكلات:</strong> هل المشكلة من شأنها توليد مشكلات أخرى؟</li>
+                        <li><strong>4. مقدار الانتشار والتأثير:</strong> حجم شيوعها وطبيعة الشريحة المتأثرة بها.</li>
+                        <li><strong>5. قضية المناخ العام:</strong> مراعاة السياقات والظروف المحيطة بالواقع.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Axis 6: Positive Fruits -->
+            <section class="card" id="axis-6">
+                <div class="card-header">
+                    <h2 class="card-title"><span>6️⃣</span> الآثار الحسنة المترتبة على مركزة المركزيات</h2>
+                    <button class="btn-copy" onclick="copyCardText(this)">📋 نسخ البطاقة</button>
+                </div>
+
+                <p style="margin-bottom: 20px;">ضبط ترتيب المركزيات يثمر ثماراً جليلة على الفرد والأمة، منها:</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+                    <div class="box box-success" style="margin:0;">
+                        <strong>1. وحدة الصف:</strong> سبب من أسباب التقارب بين المسلمين ووحدة الصف.
+                    </div>
+                    <div class="box box-success" style="margin:0;">
+                        <strong>2. الجمع بين الشريعة:</strong> ضبط المركزيات يُعين على ضم الأصول والفرعيات بلا تناقض.
+                    </div>
+                    <div class="box box-success" style="margin:0;">
+                        <strong>3. حسن التعبد:</strong> حسن التعبد والتقرب إلى الله بما يحبه ويرضاه أولاً.
+                    </div>
+                    <div class="box box-success" style="margin:0;">
+                        <strong>4. حسن الفهم:</strong> حسن الفهم الشامل والعميق للدين.
+                    </div>
+                    <div class="box box-success" style="margin:0;">
+                        <strong>5. التقييم المنضبط:</strong> حسن التقييم المنبثق عن المركزيات الشرعية للواقع والأشخاص.
+                    </div>
+                    <div class="box box-success" style="margin:0;">
+                        <strong>6. ضبط الولاء والبراء:</strong> ضبط مسائل الولاء والبراء على ما يُجدي ويُغني.
+                    </div>
+                    <div class="box box-success" style="margin:0;">
+                        <strong>7. التجديد الشرعي:</strong> التجديد في الدين وفق القواعد والمركزيات الصحيحة.
+                    </div>
+                    <div class="box box-success" style="margin:0;">
+                        <strong>8. سد الثغور:</strong> سد الثغور الإصلاحية بفعالية.
+                    </div>
+                    <div class="box box-success" style="margin:0; grid-column: 1 / -1;">
+                        <strong>9. وضوح الرسالة:</strong> وضوح الرسالة الإسلامية واستقامة الدعوة.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Axis 7: 7 Centralities for Revival -->
+            <section class="card" id="axis-7">
+                <div class="card-header">
+                    <h2 class="card-title"><span>7️⃣</span> مركزيات تحتاج إلى إحياء في واقعنا الحالي</h2>
+                    <button class="btn-copy" onclick="copyCardText(this)">📋 نسخ البطاقة</button>
+                </div>
+
+                <p style="margin-bottom: 20px;">التصحيح والإحياء الواجب في الواقع المعاصر يتطلب التركيز على القضايا المحورية التالية:</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="badge badge-primary">المركزية 1</span>
+                            <strong>فكرة "مركزة المركزيات" نفسها:</strong> إشاعة هذا الوعي وإعادة الترتيب في عقول المصلحين والشباب.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="badge badge-primary">المركزية 2</span>
+                            <strong>الوعي وتصحيح المفاهيم في المركزيات الداخلية:</strong> للقضايا الكبرى في الإسلام وضبط أركانها.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="badge badge-primary">المركزية 3</span>
+                            <strong>إحياء المقاصد الكبرى الشريفة في الإسلام:</strong> ربط الأحكام بالغاية التي سُنت لأجلها.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="badge badge-primary">المركزية 4</span>
+                            <strong>مركزيات الاقتداء:</strong> الاقتداء بالنبي ﷺ = هو الدين! وله مراتب ودرجات يجب التأسي بها.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="badge badge-primary">المركزية 5</span>
+                            <strong>إحياء مركزية العبودية لله:</strong> لأنها مهمة بحد ذاتها، ولأن الأشياء والفتن التي في الواقع تكاد تقطع الصلة بين العبد وهذه المركزية، وهو أمر زائد عن مجرد الهوى ووسوسة الشيطان!
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="badge badge-primary">المركزية 6</span>
+                            <strong>مركزيّة العمل:</strong> فإننا في مرحلة تقتضي أعلى درجات العمل الميداني والإنتاج، ومع ذلك تجد ابتعاداً عنه وركوناً للجدل.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="badge badge-primary">المركزية 7</span>
+                            <strong>تطبيق الأصول:</strong> تنزيل القواعد والأصول الشرعية على الواقع بوضوح وعملية.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <span class="badge badge-primary">المركزية 8</span>
+                            <strong>التزكية:</strong> العناية بتزكية النفوس وصلاح القلوب كركيزة للبناء.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>تم تحويل المحتوى وتنسيقه بواسطة منصة التلخيص الأكاديمي الاحترافية &copy; 2026</p>
+        <p style="margin-top: 5px; font-size: 0.8rem;">مصمم ليعمل بدون اتصال بالإنترنت (Single HTML File)</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initTOC();
+            initScrollProgress();
+            initThemeToggle();
+            initFontResizer();
+            initAccordion();
+            initSearch();
+            initScrollSpy();
+        });
+
+        // Generate Table of Contents Dynamically
+        function initTOC() {
+            const tocList = document.getElementById('toc-list');
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                const titleElement = card.querySelector('.card-title');
+                if (titleElement) {
+                    const id = card.id;
+                    const text = titleElement.textContent.replace('📋 نسخ البطاقة', '').trim();
+                    
+                    const li = document.createElement('li');
+                    li.className = 'toc-item';
+                    
+                    const a = document.createElement('a');
+                    a.className = 'toc-link';
+                    a.href = `#${id}`;
+                    a.textContent = text;
+                    
+                    li.appendChild(a);
+                    tocList.appendChild(li);
+                }
+            });
+        }
+
+        // Reading Progress Indicator
+        function initScrollProgress() {
+            const progressBar = document.getElementById('progress-bar');
+            window.addEventListener('scroll', () => {
+                const windowScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (windowScroll / height) * 100;
+                progressBar.style.width = scrolled + '%';
+            });
+        }
+
+        // Dark/Light Theme Toggle
+        function initThemeToggle() {
+            const btnTheme = document.getElementById('btn-theme');
+            btnTheme.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                btnTheme.textContent = isDark ? '☀️' : '🌙';
+            });
+        }
+
+        // Font Size Resizer
+        function initFontResizer() {
+            let scale = 1;
+            const btnPlus = document.getElementById('btn-font-plus');
+            const btnMinus = document.getElementById('btn-font-minus');
+
+            btnPlus.addEventListener('click', () => {
+                if (scale < 1.3) {
+                    scale += 0.05;
+                    document.documentElement.style.setProperty('--font-scale', scale);
+                }
+            });
+
+            btnMinus.addEventListener('click', () => {
+                if (scale > 0.85) {
+                    scale -= 0.05;
+                    document.documentElement.style.setProperty('--font-scale', scale);
+                }
+            });
+
+            // Scroll to Top
+            document.getElementById('btn-scroll-top').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Print
+            document.getElementById('btn-print').addEventListener('click', () => {
+                window.print();
+            });
+        }
+
+        // Accordion Component Logic
+        function initAccordion() {
+            const headers = document.querySelectorAll('.accordion-header');
+            headers.forEach(header => {
+                header.addEventListener('click', () => {
+                    const item = header.parentElement;
+                    item.classList.toggle('active');
+                });
+            });
+        }
+
+        // Instant Live Search Logic
+        function initSearch() {
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                const cards = document.querySelectorAll('.card');
+
+                cards.forEach(card => {
+                    const text = card.textContent.toLowerCase();
+                    if (text.includes(query)) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        }
+
+        // Active Link Highlighting on Scroll
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('.card');
+            const navLinks = document.querySelectorAll('.toc-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 120;
+                    if (pageYOffset >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // Copy Card Text Function
+        function copyCardText(button) {
+            const card = button.closest('.card');
+            const textToCopy = card.innerText.replace('📋 نسخ البطاقة', '').trim();
+            
+            // Execute Copying using standard execCommand fallback for seamless execution
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const originalText = button.textContent;
+            button.textContent = '✅ تم النسخ!';
+            button.style.background = '#10b981';
+            button.style.color = '#fff';
+
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = 'transparent';
+                button.style.color = '';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
